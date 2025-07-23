@@ -20,6 +20,16 @@ public:
 			if (ifFirstTwoCorrect(guessNumber)) {
 				return { false, 2, 0 };
 			}
+			else if (guessNumber[0] != question[0]
+				&& guessNumber[1] == question[1]
+				&& guessNumber[2] == question[2]) {
+				return { false, 2, 0 };
+			}
+			else if (guessNumber[0] == question[0]
+				&& guessNumber[1] != question[1]
+				&& guessNumber[2] == question[2]) {
+				return { false, 2, 0 };
+			}
 			else {
 				return { false,0,0 };
 			}
