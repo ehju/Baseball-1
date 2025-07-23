@@ -13,7 +13,12 @@ public:
 	explicit Baseball(const string& question) : question(question) {}
 	GuessResult guess(const string& guessNumber) {
 		assertIlligalArgument(guessNumber);
-		return { true,3,0 };
+		if (guessNumber == question) {
+			return { true,3,0 };
+		}
+		else {
+			return { false,0,0 };
+		}
 	}
 private:
 	string question;
