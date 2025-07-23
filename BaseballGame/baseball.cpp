@@ -17,17 +17,22 @@ public:
 			return { true,3,0 };
 		}
 		else {
-			int ballcount = 0;
-			for (int i = 0; i < 3;i++) {
-				for (int j = 0; j < 3;j++) {
-					if ((i != j) && (guessNumber[i] == question[j]))
-						ballcount++;
-				}
-			}
-			return { false,getStrikeCnt(guessNumber),ballcount};
+			getBallCnt(guessNumber);
+			return { false,getStrikeCnt(guessNumber),getBallCnt(guessNumber)};
 		}
 	}
-	int getStrikeCnt(const std::string& guessNumber)
+	int getBallCnt(const string& guessNumber)
+	{
+		int ballcnt = 0;
+		for (int i = 0; i < 3;i++) {
+			for (int j = 0; j < 3;j++) {
+				if ((i != j) && (guessNumber[i] == question[j]))
+					ballcnt++;
+			}
+		}
+		return ballcnt;
+	}
+	int getStrikeCnt(const string& guessNumber)
 	{
 		int strikecnt = 0;
 		for (int i = 0;i < 3;i++) {
