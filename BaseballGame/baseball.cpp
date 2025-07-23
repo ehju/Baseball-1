@@ -14,12 +14,19 @@ public:
 	GuessResult guess(const string& guessNumber) {
 		assertIlligalArgument(guessNumber);
 		if (guessNumber == question) {
-			return { true,3,0 };
+			return getSolvedResult();
 		}
 		else {
-			getBallCnt(guessNumber);
-			return { false,getStrikeCnt(guessNumber),getBallCnt(guessNumber)};
+			return getUnsolvedResult(guessNumber);
 		}
+	}
+private:
+	string question;
+	GuessResult getSolvedResult() {
+		return {true, 3, 0};
+	}
+	GuessResult getUnsolvedResult(const string& guessNumber) {
+		return {false,getStrikeCnt(guessNumber),getBallCnt(guessNumber) };
 	}
 	int getBallCnt(const string& guessNumber)
 	{
@@ -41,8 +48,7 @@ public:
 		}
 		return strikecnt;
 	}
-private:
-	string question;
+
 	bool isDuplicatedNumber(const string& guessNumber)
 	{
 		return guessNumber[0] == guessNumber[1]
