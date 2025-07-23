@@ -17,29 +17,17 @@ public:
 			return { true,3,0 };
 		}
 		else {
-			if (ifFirstTwoCorrect(guessNumber)) {
-				return { false, 2, 0 };
-			}
-			else if (guessNumber[0] != question[0]
-				&& guessNumber[1] == question[1]
-				&& guessNumber[2] == question[2]) {
-				return { false, 2, 0 };
-			}
-			else if (guessNumber[0] == question[0]
-				&& guessNumber[1] != question[1]
-				&& guessNumber[2] == question[2]) {
-				return { false, 2, 0 };
-			}
-			else {
-				return { false,0,0 };
-			}
+			return { false,getStrikeCnt(guessNumber),0};
 		}
 	}
-	bool ifFirstTwoCorrect(const std::string& guessNumber)
+	int getStrikeCnt(const std::string& guessNumber)
 	{
-		return guessNumber[0] == question[0]
-			&& guessNumber[1] == question[1]
-			&& guessNumber[2] != question[2];
+		int strikecnt = 0;
+		for (int i = 0;i < 3;i++) {
+			if (guessNumber[i] == question[i])
+				strikecnt++;
+		}
+		return strikecnt;
 	}
 private:
 	string question;
