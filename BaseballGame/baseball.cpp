@@ -17,7 +17,14 @@ public:
 			return { true,3,0 };
 		}
 		else {
-			return { false,getStrikeCnt(guessNumber),0};
+			int ballcount = 0;
+			for (int i = 0; i < 3;i++) {
+				for (int j = 0; j < 3;j++) {
+					if ((i != j) && (guessNumber[i] == question[j]))
+						ballcount++;
+				}
+			}
+			return { false,getStrikeCnt(guessNumber),ballcount};
 		}
 	}
 	int getStrikeCnt(const std::string& guessNumber)
